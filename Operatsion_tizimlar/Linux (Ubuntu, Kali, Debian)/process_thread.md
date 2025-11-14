@@ -1,3 +1,5 @@
+## Process & Thread boshqaruvi
+
 ```bash
 top
 htop

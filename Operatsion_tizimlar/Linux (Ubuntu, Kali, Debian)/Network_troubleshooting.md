@@ -1,3 +1,5 @@
+## Network troubleshooting
+
 ```bash
 ip a
 ip r
