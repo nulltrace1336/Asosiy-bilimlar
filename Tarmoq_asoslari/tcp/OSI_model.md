@@ -1,11 +1,15 @@
-OSI Model – Amaliy misollar
-Layer 1 – Kabel uzilishi
+# OSI Model – Amaliy Misollar
 
-No link → NIC kartada chiroq yo‘q → Layer 1 muammo.
+## Layer 1 – Kabel uzilishi
 
-Layer 3 – IP muammosi
-`ip a`
-`ip route`
+- No link → NIC kartada chiroq yo‘q → **Layer 1 muammo**.
 
+---
 
-Agar default gateway yo‘q → Layer 3dagi routing muammosi.
+## Layer 3 – IP muammosi
+
+IP manzil va routing tekshirish uchun buyruqlar:
+
+```bash
+ip a
+ip route
