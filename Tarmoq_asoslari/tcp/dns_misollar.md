@@ -1,10 +1,14 @@
 # DNS – Misollar
 
-## 1️⃣ DNS qidiruv
+## DNS qidiruv
 
 Saytning IP manzilini aniqlash uchun:
 
 ```bash
 nslookup google.com
 dig google.com
+```
+## Reverse DNS
+
+```bash
 dig -x 8.8.8.8
