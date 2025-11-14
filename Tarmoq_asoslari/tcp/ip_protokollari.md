@@ -7,7 +7,7 @@ Ping va Traceroute orqali tarmoq diagnostikasi:
 `traceroute google.com`  # Linux  
 `tracert google.com`      # Windows
 
----
+**```**
 
 TCP port tekshirish:
 
