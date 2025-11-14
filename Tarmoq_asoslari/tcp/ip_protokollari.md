@@ -1,17 +1,21 @@
 # TCP/IP Protokollari – Misollar
 
-Ping va Traceroute orqali tarmoq diagnostikasi:
+## Ping va Traceroute orqali tarmoq diagnostikasi
+
+Tarmoqga ulanishingizni tekshirish va paket yo‘lini aniqlash uchun quyidagi buyruqlardan foydalaning:
 
 ```bash
-`ping google.com`  
-`traceroute google.com`  # Linux  
-`tracert google.com`      # Windows
+# Ping orqali saytga ulanishni tekshirish
+ping google.com
 
-**```**
+# Traceroute orqali paket yo‘lini aniqlash
+# Linux
+traceroute google.com
+# Windows
+tracert google.com
 
-TCP port tekshirish:
+TCP port tekshirish
 
-```bash
-`nc -zv 192.168.1.10 22`  
+SSH yoki boshqa servis porti ochiq-yo‘qligini tekshirish:
 
-Yuqoridagi buyruq 22-port (SSH) ochiqmi – shuni tekshiradi.
+nc -zv 192.168.1.10 22  # Bu buyruq 22-port (SSH) ochiqmi tekshiradi
