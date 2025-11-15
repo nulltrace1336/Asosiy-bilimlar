@@ -8,15 +8,15 @@ Kali Linux:
 bash# Odatda oldindan o'rnatilgan
 nikto -Version
 Asosiy sintaksis
-bashnikto -h <manzil> [opsiyalar]
+nikto -h <manzil> [opsiyalar]
 Muhim parametrlar va misollar
 1. Oddiy skanerlash
-bashnikto -h http://example.com
+nikto -h http://example.com
 nikto -h 192.168.1.100
 2. SSL/HTTPS skanerlash
-bashnikto -h https://example.com -ssl
+nikto -h https://example.com -ssl
 3. Port ko'rsatish
-bashnikto -h example.com -p 8080
+nikto -h example.com -p 8080
 nikto -h example.com -p 80,443,8080
 4. Natijalarni saqlash
 bash# HTML formatda
@@ -37,9 +37,9 @@ nikto -h example.com -Tuning 2
 # Ma'lumotlar bazasi zaifliklarini tekshirish
 nikto -h example.com -Tuning 3
 6. User-Agent o'zgartirish
-bashnikto -h example.com -useragent "Mozilla/5.0"
+nikto -h example.com -useragent "Mozilla/5.0"
 7. Autentifikatsiya bilan ishlash
-bashnikto -h example.com -id username:password
+nikto -h example.com -id username:password
 8. Maxsus so'rovlar soni
 bash# Sekinroq skanerlash (IDS/IPS ni chetlab o'tish uchun)
 nikto -h example.com -Pause 5
@@ -62,14 +62,14 @@ x - Reverse Tuning opsiyalari
 
 Amaliy misollar
 Keng qamrovli skanerlash
-bashnikto -h example.com -ssl -p 443 -Format html -o natija.html -Tuning 123456789abc
+nikto -h example.com -ssl -p 443 -Format html -o natija.html -Tuning 123456789abc
 Bir nechta hostlarni skanerlash
 bash# hosts.txt faylida manzillar ro'yxati
 nikto -h hosts.txt
 Proksi orqali skanerlash
-bashnikto -h example.com -useproxy http://proxy:8080
+nikto -h example.com -useproxy http://proxy:8080
 Vaqtni cheklash
-bashnikto -h example.com -maxtime 30m
+nikto -h example.com -maxtime 30m
 Foydali maslahatlar
 
 Ruxsat olish: Faqat o'zingizga tegishli yoki ruxsat olingan serverlarda foydalaning
