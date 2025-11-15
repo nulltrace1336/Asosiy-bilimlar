@@ -218,15 +218,15 @@ Captive Portal (Wi-Fi login sahifasi)
 📌 pfSense WEB INTERFACE kirish
 
 Brauzer orqali:
-
+```bash
 https://192.168.1.1
-
+```
 
 login:
-
+```bash
 user: admin
 pass: pfsense
-
+```
 3️⃣ pfSense INTERFACE (WAN & LAN) SOZLASH
 🔹 WAN (Internet tomoni)
 
@@ -246,17 +246,17 @@ Interfaces → WAN → PPPoE login-parol kiritiladi.
 🔹 LAN (Ichki tarmoq)
 
 LAN standart IP:
-
+```bash
 192.168.1.1/24
-
+```
 
 Agar o‘zgartirmoqchi bo‘lsangiz:
 Interfaces → LAN → Static IP
 
 Masalan:
-
+```bash
 192.168.10.1/24
-
+```
 4️⃣ DHCP SERVER sozlash
 
 Ko‘p ofislarda pfSense DHCP server o‘rni bo‘lib ishlaydi.
@@ -264,11 +264,11 @@ Ko‘p ofislarda pfSense DHCP server o‘rni bo‘lib ishlaydi.
 Services → DHCP Server → LAN
 
 Masalan:
-
+```bash
 Range: 192.168.10.100 – 192.168.10.200
 DNS: 192.168.10.1
 Gateway: 192.168.10.1
-
+```
 5️⃣ INTERNET CHIQARISH QOIDALARI (Firewall Rules)
 
 Har bir interface uchun qoidalar alohida bo‘ladi:
@@ -276,9 +276,9 @@ Har bir interface uchun qoidalar alohida bo‘ladi:
 Firewall → Rules → LAN
 
 Default qoida:
-
+```bash
 LAN to ANY — Allow
-
+```
 
 Demak LAN → Internet chiqishi ruxsat.
 
@@ -301,29 +301,29 @@ Korxona uchun eng muhim bo‘lim.
 Interfaces → Assignments → VLANs → Add
 
 Misol:
-
+```bash
 Parent interface: LAN
 VLAN tag: 10
 Name: VLAN10
-
+```
 
 So‘ngra:
-Interfaces → Assignments → Add VLAN10
+```Interfaces → Assignments → Add VLAN10```
 
 IP berasiz:
-
+```bash
 192.168.10.1/24
-
+```
 8️⃣ VPN o‘rnatish (OpenVPN misolida)
 
-VPN → OpenVPN → Wizards
+```VPN → OpenVPN → Wizards```
 
 Server Certificate yaratish
 
 Tunnel network:
-
+```bash
 10.0.8.0/24
-
+```
 
 Client export paketi orqali .ovpn fayl beriladi
 
@@ -332,11 +332,11 @@ OpenVPN orqali xodimlar uydan ofisga ulana oladi.
 9️⃣ IDS/IPS: Suricata yoki Snort
 Suricata o‘rnatish:
 
-System → Package Manager → Available Packages
+```System → Package Manager → Available Packages```
 — Suricata install
 
 Keyin:
-Services → Suricata
+```Services → Suricata```
 
 Interface:
 
@@ -351,13 +351,13 @@ ET Open
 Snort VRT
 
 IPS rejimini yoqish:
-IPS Mode → Enabled
+```IPS Mode → Enabled```
 
 1️⃣0️⃣ Traffic Shaping (QoS)
 
 Masalan Zoom, Teams, VoIP uchun priority berish:
 
-Firewall → Traffic Shaper → Wizards
+```Firewall → Traffic Shaper → Wizards```
 
 Shablonlardan tanlasangiz bo‘ladi:
 
@@ -369,20 +369,20 @@ Multi-WAN
 
 1️⃣1️⃣ Load Balancing (2ta internet bo‘lsa)
 
-System → Routing → Gateway Groups → Add
+```System → Routing → Gateway Groups → Add```
 
 Masalan:
-
+```bash
 GW1 — Tier1
 GW2 — Tier2
-
+```
 
 Bu Failover rejimi:
 Internet 1 o‘chsa → Internet 2 ga o‘tadi.
 
 1️⃣2️⃣ Captive Portal (Wi-Fi login sahifasi)
 
-Services → Captive Portal → Add
+```Services → Captive Portal → Add```
 
 Interface: LAN yoki Wi-Fi VLAN
 
@@ -394,7 +394,7 @@ Restoran, mehmonxona, universitetlar uchun juda qulay.
 
 1️⃣3️⃣ Backup & Restore
 
-Diagnostics → Backup/Restore
+```Diagnostics → Backup/Restore```
 
 Har hafta backup olish tavsiya qilinadi.
 
@@ -408,11 +408,11 @@ VLAN20 — Xodimlar
 VLAN30 — Mehmon Wi-Fi
 
 Qoida:
-
+```bash
 VLAN10 → VLAN20 — Allow
 VLAN20 → VLAN10 — Block
 VLAN30 → ANY — Only Internet
-
+```
 📌 2. YouTube bloklash
 
 Aliases → URL Table — YouTube domains import
