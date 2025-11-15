@@ -9,14 +9,16 @@ Firewalld tarmoqlarni xavfsizlik bo‘yicha zonalarga ajratadi. Har bir zona o�
 
 Eng ko‘p ishlatiladigan zonalar:
 
-Zona	Tavsifi
-public	Tashqi tarmoqlar uchun, minimal ruxsatlar
-home	Uy tarmoqlari, biroz kengroq ruxsatlar
-internal	Ishonchli ichki tarmoq
-dmz	Internetdan kirishga mo‘ljallangan serverlar
-trusted	To‘liq ruxsat berilgan (eng xavfli)
-drop	Barcha trafikni tashlaydi
-block	So‘rovlarni rad qiladi (ICMP xato qaytaradi)
+| Zona         | Tavsifi                                      |
+| ------------ | -------------------------------------------- |
+| **public**   | Tashqi tarmoqlar uchun, minimal ruxsatlar    |
+| **home**     | Uy tarmoqlari, biroz kengroq ruxsatlar       |
+| **internal** | Ishonchli ichki tarmoq                       |
+| **dmz**      | Internetdan kirishga mo‘ljallangan serverlar |
+| **trusted**  | To‘liq ruxsat berilgan (eng xavfli)          |
+| **drop**     | Barcha trafikni tashlaydi                    |
+| **block**    | So‘rovlarni rad qiladi (ICMP xato qaytaradi) |
+
 🔹 Services
 
 HTTP, HTTPS, SSH kabi xizmatlar tayyor profillarga ega.
