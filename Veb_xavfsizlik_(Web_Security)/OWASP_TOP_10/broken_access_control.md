@@ -75,6 +75,11 @@ yaml
 Copy code
 Foydalanuvchi `id=124` ga o‘zgartirsa, boshqa foydalanuvchi profilini ko‘rishi mumkin.
 
+```http
+GET /user/profile?id=123 HTTP/1.1
+Host: example.com
+Cookie: session=abc123
+
 ### 5.2 Vertical Privilege Escalation misoli
 - Oddiy foydalanuvchi admin panelga `/admin` URL orqali kira oladi, chunki server rol tekshiruvini bajarmaydi.
 
