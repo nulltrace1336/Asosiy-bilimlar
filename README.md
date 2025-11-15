@@ -1,137 +1,118 @@
-✅ 1. Asosiy texnik bilimlar
-🔹 Tarmoq asoslari (Network Fundamentals)
+# 🛡️ Cybersecurity Skills Roadmap
+
+Bu repozitoriy **kiberxavfsizlik mutaxassisi bo‘lishni istaganlar uchun** to‘liq qo‘llanma hisoblanadi.  
+U quyidagi yo‘nalishlarni qamrab oladi: asosiy texnik bilimlar, xavfsizlik vositalari, veb xavfsizlik, pentesting, Blue Team, kriptografiya, dasturlash, kiber hujumlar, standartlar va cloud security.
 
-TCP/IP protokollari
+---
 
-OSI model
+## ✅ 1. Asosiy texnik bilimlar
 
-DNS, DHCP, NAT
+### 🔹 Tarmoq asoslari (Network Fundamentals)
+- TCP/IP protokollari  
+- OSI modeli  
+- DNS, DHCP, NAT  
+- Routing & Switching asoslari  
+- VPN, VLAN, Proxy, Firewall qanday ishlashi  
 
-Routing & Switching asoslari
+### 🔹 Operatsion tizimlar
+- Linux (Ubuntu, Kali, Debian) – buyruqlar, user management, process/thread, loglar  
+- Windows Server – Active Directory, Group Policy, PowerShell  
 
-VPN, VLAN, Proxy, Firewall qanday ishlashi
+---
 
-🔹 Operatsion tizimlar
+## ✅ 2. Xavfsizlik vositalari va texnologiyalari
 
-Linux (Ubuntu, Kali, Debian) – buyruqlar, user management, process/thread, loglar
+### 🔸 Firewall & IDS/IPS
+- pfSense, Cisco ASA, Fortigate  
+- Suricata, Snort, Zeek tahlili  
 
-Windows Server – Active Directory, Group Policy, PowerShell
+### 🔸 SIEM tizimlar
+- Splunk, ELK/Elastic SIEM, Wazuh  
+- Log tahlili, anomaliyalarni topish  
 
-✅ 2. Xavfsizlik vositalari va texnologiyalari
-🔸 Firewalldr & IDS/IPS
+### 🔸 Endpoint Security
+- EDR (Crowdstrike, SentinelOne, Defender ATP)  
+- Antiviruses, Sandboxing  
 
-pfSense, Cisco ASA, Fortigate
+---
 
-Suricata, Snort, Zeek tahlili
+## ✅ 3. Veb xavfsizlik (Web Security)
 
-🔸 SIEM tizimlar
+### 🔥 OWASP Top 10
+- SQL Injection  
+- XSS  
+- Broken Authentication  
+- SSRF  
+- IDOR  
+- CSRF  
+- RCE  
 
-Splunk, ELK/Elastic SIEM, Wazuh
+### 🔸 Vositalar
+- Burp Suite  
+- OWASP ZAP  
+- SQLMap  
+- Nikto  
 
-Log tahlili, anomaliyalarni topish
+---
 
-🔸 Endpoint Security
+## ✅ 4. Pentesting & Red Team ko‘nikmalari
+- Information Gathering (Subdomain, DNS, WHOIS)  
+- Scanning & Enumeration (Nmap, Rustscan)  
+- Vulnerability Analysis (OpenVAS, Nessus)  
+- Exploitation (Metasploit, manual exploits)  
+- Privilege Escalation (Linux/Windows)  
+- Password attacks (Hydra, Hashcat)  
 
-EDR (Crowdstrike, SentinelOne, Defender ATP)
+---
 
-Antiviruses, Sandboxing
+## ✅ 5. Blue Team ko‘nikmalari
+- Incident Response jarayonlari  
+- Threat Hunting  
+- Malware analysis (yengil darajada)  
+- Digital Forensics (disk & memory analysis)  
 
-✅ 3. Veb xavfsizlik (Web Security)
-🔥 OWASP Top 10 bo‘yicha to‘liq amaliy bilim
+---
 
-SQL Injection
+## ✅ 6. Kriptografiya
+- Hash funksiyalar (MD5, SHA256)  
+- Symmetric / Asymmetric encryption (AES, RSA)  
+- TLS/SSL  
+- PKI sertifikatlar tizimi  
 
-XSS
+---
 
-Broken Auth
+## ✅ 7. Dasturlash
+Kiberxavfsizlik xodami kamida bitta dasturlash tilini bilishi shart:
+- Python (eng kerakli)  
+- Bash Scripting  
+- PowerShell  
 
-SSRF
+**Bonus:**
+- JavaScript (XSS, web exploits)  
+- C/C++ (binary exploitation)  
 
-IDOR
+---
 
-CSRF
+## ✅ 8. Kiber hujumlarning turlari va himoya usullari
+- Phishing  
+- Malware, Ransomware  
+- DDoS  
+- Insider threats  
+- Social Engineering  
 
-RCE
+---
 
-🔸 Burp Suite, ZAP, SQLMap, Nikto bilan ishlash
-✅ 4. Pentesting & Red Team ko‘nikmalari
+## ✅ 9. Kiberxavfsizlik standartlari
+- ISO 27001  
+- NIST Cybersecurity Framework  
+- SOC 2  
+- PCI-DSS  
 
-Information Gathering (Subdomain, DNS, WHOIS)
+---
 
-Scanning & Enumeration (Nmap, Rustscan)
+## ✅ 10. Cloud Security (minimal darajada)
+- AWS IAM, VPC, Security Groups  
+- Azure AD, Defender  
+- Google Cloud Security xizmatlari  
 
-Vulnerability Analysis (OpenVAS, Nessus)
-
-Exploitation (Metasploit, manual exploits)
-
-Privilege Escalation (Linux/Windows)
-
-Password attacks (Hydra, Hashcat)
-
-✅ 5. Blue Team ko‘nikmalari
-
-Incident Response jarayonlari
-
-Threat Hunting
-
-Malware analysis (yengil darajada)
-
-Digital Forensics (disk & memory analysis)
-
-✅ 6. Kriptografiya
-
-Hash funksiyalar (MD5, SHA256)
-
-Symmetric / Asymmetric encryption (AES, RSA)
-
-TLS/SSL
-
-PKI sertifikatlar tizimi
-
-✅ 7. Dasturlash
-
-Kiberxavfsizlik xodami kamida bitta tilni bilishi shart:
-
-Python (eng kerakli)
-
-Bash Scripting
-
-PowerShell
-
-Bonus:
-
-JavaScript (XSS, web exploits)
-
-C/C++ (binary exploitation)
-
-✅ 8. Kiber hujumlarning turlari va himoya usullari
-
-Phishing
-
-Malware, Ransomware
-
-DDoS
-
-Insider threats
-
-Social Engineering
-
-✅ 9. Kiberxavfsizlik standartlari
-
-ISO 27001
-
-NIST Cybersecurity Framework
-
-SOC 2
-
-PCI-DSS
-
-✅ 10. Cloud Security
-
-(minimal darajada bilishi kerak)
-
-AWS IAM, VPC, Security Groups
-
-Azure AD, Defender
-
-Google Cloud Security xizmatlari
+---
