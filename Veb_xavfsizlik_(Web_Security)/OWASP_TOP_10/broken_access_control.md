@@ -1,90 +1,189 @@
-# Broken Access Control
+Broken Access Control - Batafsil Ma'lumot
+Nima bu?
+Broken Access Control - bu foydalanuvchilar o'z ruxsatlaridan tashqaridagi resurslarga kirish imkoniyatiga ega bo'lgan xavfsizlik zaifligidir. OWASP Top 10 (2021) ro'yxatida #1 o'rinda turadi.
+Asosiy Turlari
+1. Vertical Access Control (Vertikal Nazorat Buzilishi)
+Oddiy foydalanuvchi admin funksiyalariga kiradi:
 
-**Broken Access Control** – bu veb-ilovalarda foydalanuvchi ruxsatlarini noto‘g‘ri boshqarish natijasida yuzaga keladigan xavfsizlik muammosi. Bu xatolik foydalanuvchiga o‘ziga ruxsat berilmagan resurslarga kirish imkonini beradi, masalan, boshqa foydalanuvchining ma’lumotlarini ko‘rish, o‘zgartirish yoki o‘chirish.
+/admin panelga kirish
+Privilegiyalangan API so'rovlarini bajarish
+Tizim sozlamalarini o'zgartirish
 
-OWASP Top 10 2021 ro‘yxatida bu **A01:2021 – Broken Access Control** sifatida ajratilgan.
+2. Horizontal Access Control (Gorizontal Nazorat Buzilishi)
+Bir xil darajadagi foydalanuvchilar bir-birining ma'lumotlariga kiradi:
 
----
+Boshqa foydalanuvchilarning profilini ko'rish/tahrirlash
+URL'dagi ID ni o'zgartirish: /user/123 → /user/124
 
-## 1. Broken Access Control turlari
+3. Context-Dependent Access Control
+Jarayonlarni buzib o'tish:
 
-| Tur | Tavsifi | Misol |
-| --- | ------- | ----- |
-| **Vertical Privilege Escalation** | Foydalanuvchi yuqori darajadagi foydalanuvchi ruxsatlariga ega bo‘lishga urinadi | Oddiy foydalanuvchi admin panelga kiradi |
-| **Horizontal Privilege Escalation** | Foydalanuvchi o‘ziga teng bo‘lgan boshqa foydalanuvchi ma’lumotlariga kiradi | Foydalanuvchi boshqa foydalanuvchining profilini o‘zgartiradi |
-| **Unrestricted Access** | Hech qanday tekshiruvsiz resursga kirish mumkin | URL orqali boshqa foydalanuvchi faylini ko‘rish |
-| **Insecure Direct Object References (IDOR)** | Foydalanuvchi ob’ekt identifikatorlarini o‘zgartirib resursga kiradi | `/invoice/123` → `/invoice/124` |
+To'lovni amalga oshirmasdan mahsulotni olish
+Workflow bosqichlarini o'tkazib yuborish
 
----
+Keng Tarqalgan Zaifliklar
+❌ Xavfli misollar:
 
-## 2. Broken Access Control sabablar
+1. URL orqali to'g'ridan-to'g'ri kirish:
+   /api/users/456/delete (auth tekshiruvsiz)
 
-- Ruxsatlarni server tomonida tekshirmaslik (faqat front-endda tekshirish)
-- Noaniq yoki noto‘g‘ri rol siyosati
-- Default konfiguratsiyalarda barcha foydalanuvchilarga ochiq resurslar
-- API-larda autentifikatsiya va avtorizatsiya tekshiruvlarining yetishmasligi
-- URL yoki parametrlarni foydalanuvchi tomonidan boshqariladigan tarzda ishlatish
+2. ID parametrini o'zgartirish:
+   /invoice?id=123 → /invoice?id=124
 
----
+3. POST so'rovda role o'zgartirish:
+   {"user_id": 123, "role": "admin"}
 
-## 3. Aniqlash usullari
+4. Hidden form field manipulation:
+   <input type="hidden" name="role" value="user">
 
-1. **Manual Testing**
-   - URL-larni o‘zgartirib kirishni sinash
-   - Boshqa foydalanuvchi ID-larini ishlatib kirish
-   - Rol o‘zgartirish (user → admin) imkoniyatlarini tekshirish
+5. Cookie/Token manipulation:
+   isAdmin=false → isAdmin=true
+Aniqlash Usullari
+1. Manual Testing (Qo'lda Tekshirish)
+bash# Turli foydalanuvchilar bilan test
+# User A sifatida:
+GET /api/profile/user_a
 
-2. **Automated Tools**
-   - Burp Suite – **Scanner & Intruder**
-   - OWASP ZAP – Active Scan
-   - Postman / API testing bilan ruxsatlarni tekshirish
+# User B sifatida xuddi shu so'rov:
+GET /api/profile/user_a  # Muvaffaqiyatli bo'lmasligi kerak!
 
-3. **Penetration Testing Methodologies**
-   - Horizontal va vertical privilege escalation sinovlari
-   - IDOR va unrestricted file access sinovlari
-   - API endpointlarni rol va tokenlar bilan tekshirish
-
----
-
-## 4. Oldini olish va himoya qilish
-
-1. **Server-side enforce access control**
-   - Har bir resurs va endpoint uchun ruxsatlarni serverda tekshirish
-2. **Least Privilege Principle**
-   - Foydalanuvchilarga minimal zarur ruxsat berish
-3. **Dasturiy xavfsizlik qoidalari**
-   - Role-based access control (RBAC)
-   - Attribute-based access control (ABAC)
-4. **Doimiy tekshiruv va monitoring**
-   - Audit loglar va alert tizimlari
-5. **IDOR va parametrlarni xavfsiz ishlatish**
-   - Foydalanuvchi o‘zgartira olmaydigan token yoki UUID ishlatish
-6. **Qo‘shimcha xavfsizlik**
-   - Multi-factor authentication (MFA) bilan yuqori darajali ruxsatlar
-   - Rate limiting va session management
-
----
-
-## 5. Misollar
-
-### 5.1 IDOR misoli
-URL:  
-https://example.com/user/profile?id=123
-
-yaml
-Copy code
-Foydalanuvchi `id=124` ga o‘zgartirsa, boshqa foydalanuvchi profilini ko‘rishi mumkin.
-
-```http
-GET /user/profile?id=123 HTTP/1.1
-Host: example.com
-Cookie: session=abc123
+# ID Enumeration:
+GET /api/invoice/1
+GET /api/invoice/2
+GET /api/invoice/3
+...
 ```
-### 5.2 Vertical Privilege Escalation misoli
-- Oddiy foydalanuvchi admin panelga `/admin` URL orqali kira oladi, chunki server rol tekshiruvini bajarmaydi.
 
----
+### 2. **Burp Suite bilan**
+- **Intruder** - ID'larni avtomatik almashtirish
+- **Repeater** - So'rovlarni qayta jo'natish
+- **Autorize** extension - avtomatik access control tekshiruvi
 
-## 6. Resurslar
-- [OWASP Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-- [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+### 3. **OWASP ZAP**
+```
+Active Scan → Access Control Testing
+4. Postman/Insomnia
+javascript// Turli tokenlar bilan bir xil endpoint'ga so'rov
+GET /api/sensitive-data
+Headers: 
+  Authorization: Bearer <user_token>
+  Authorization: Bearer <admin_token>
+Himoya Choralari
+1. Server-Side Tekshiruv ✅
+python# Python/Flask misoli
+from flask import session, abort
+
+@app.route('/api/user/<int:user_id>')
+def get_user(user_id):
+    # Har doim server tomonida tekshiring!
+    if session['user_id'] != user_id and not session['is_admin']:
+        abort(403)  # Forbidden
+    
+    user = User.query.get(user_id)
+    return jsonify(user.to_dict())
+javascript// Node.js/Express misoli
+app.get('/api/invoice/:id', async (req, res) => {
+    const invoice = await Invoice.findById(req.params.id);
+    
+    // Foydalanuvchi faqat o'z invoice'lariga kirishi mumkin
+    if (invoice.userId !== req.user.id) {
+        return res.status(403).json({ error: 'Access denied' });
+    }
+    
+    res.json(invoice);
+});
+2. Role-Based Access Control (RBAC)
+javascript// Middleware misoli
+const checkRole = (roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ error: 'Insufficient permissions' });
+        }
+        next();
+    };
+};
+
+// Foydalanish
+app.delete('/api/user/:id', 
+    authenticate, 
+    checkRole(['admin']), 
+    deleteUser
+);
+3. Attribute-Based Access Control (ABAC)
+pythondef can_access_document(user, document):
+    # Murakkab shartlar
+    if user.id == document.owner_id:
+        return True
+    if document.is_public:
+        return True
+    if user.department == document.department and document.shared:
+        return True
+    return False
+4. Xavfsiz ID Generatsiya
+javascript// UUID ishlatish (taxmin qilib bo'lmaydigan)
+const { v4: uuidv4 } = require('uuid');
+
+const newUser = {
+    id: uuidv4(), // a3bb189e-8bf9-3888-9912-ace4e6543002
+    name: "John"
+};
+
+// Ketma-ket raqamlar o'rniga ❌
+// id: 1, 2, 3, 4...
+5. Default Deny Approach
+javascript// Hamma narsa taqiqlangan, faqat ruxsat berilganlar mumkin
+const permissions = {
+    'admin': ['read', 'write', 'delete'],
+    'user': ['read'],
+    'guest': []
+};
+
+function hasPermission(role, action) {
+    return permissions[role]?.includes(action) || false;
+}
+```
+
+## Best Practices (Eng Yaxshi Amaliyotlar)
+
+### ✅ QILING:
+1. **Har bir so'rovda** server tomonida autentifikatsiya va avtorizatsiyani tekshiring
+2. **Deny by default** - faqat aniq ruxsat berilgan resurslar ochiq
+3. **Logging** - barcha kirish urinishlarini yozib boring
+4. **Testing** - har bir yangi feature uchun access control testlari
+5. **Minimal Privilege** - foydalanuvchilarga faqat kerakli ruxsatlar
+
+### ❌ QILMANG:
+1. Client-side tekshiruvga tayanmang
+2. URL yoki ID'larni taxmin qilish oson qilmang
+3. Hidden field'larga ishonmang
+4. Sessiyalarni to'g'ri tekshirmasdan API'larga ruxsat bermang
+
+## Test Qilish Ro'yxati
+```
+☐ Har bir endpoint uchun autentifikatsiya majburiy
+☐ Horizontal privilege escalation test qilindi
+☐ Vertical privilege escalation test qilindi
+☐ Direct object reference zaifliklar yo'q
+☐ Rate limiting qo'shilgan
+☐ Logging va monitoring ishlamoqda
+☐ Session management xavfsiz
+☐ API endpoint'lar himoyalangan
+☐ File upload/download nazorat ostida
+☐ Admin panel ajratilgan va himoyalangan
+```
+
+## Real-World Misollar
+
+**IDOR (Insecure Direct Object Reference):**
+```
+https://bank.com/api/account/12345/transactions
+                                 ↑
+                    Buni o'zgartirish orqali boshqa hisoblarni ko'rish
+```
+
+**Function Level:**
+```
+POST /api/deleteUser
+{"userId": "victim_id"}
+
+Normal user bu API'ni chaqirmasligi kerak!
